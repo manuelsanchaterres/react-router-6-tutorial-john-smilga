@@ -1,21 +1,41 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import {About, Error, Home} from './pages/index'
-
+import {About, Error, Home, Products, Dashboard, SharedLayout, SingleProduct, Login, ProtectedRoute, SharedProductLayout, ProductError} from './pages/index'
+import { useState } from 'react'
 const App = () => {
+
+  const [user, setUser] = useState(null)
+
   return (
 
     <BrowserRouter>
 
       <Routes>
 
-        <Route path="about" element={<About />} />
+        <Route path="/" element={<SharedLayout />}>
 
-        <Route path="error" element={<Error />} />
-        <Route path="/" element={<Home />} />
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+
+          <Route path="products" element={<SharedProductLayout />} >
+          
+          <Route index element={<Products />} />
+          <Route path=":productId" element={<SingleProduct />} />
+
+        </Route>
+
+          <Route path="login" element={<Login setUser={setUser}/>} />
+          <Route path="dashboard" element={<ProtectedRoute user={user}><Dashboard user={user}/></ProtectedRoute>} />
+          <Route path="*" element={<Error />} />
+
+        </Route>
+
+
 
       </Routes>
     
     </BrowserRouter>
+
+
   )
 }
 

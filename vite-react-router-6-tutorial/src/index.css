@@ -262,8 +262,12 @@ ul {
 .section {
   padding: 2rem 0;
   width: 90vw;
-  max-width: var(--max-width);
+  max-width: 100%;
   margin: 0 auto;
+}
+.section h2 {
+
+  text-align: center;
 }
 
 .navbar {
@@ -287,6 +291,15 @@ ul {
 
 .products h5 {
   margin-bottom: 0;
+}
+
+.product {
+
+  display: grid;
+  grid-template-rows: auto;
+  gap: 0.5rem;
+  justify-content: center;
+  
 }
 
 .product img {
